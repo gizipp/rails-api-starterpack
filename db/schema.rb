@@ -12,28 +12,26 @@
 
 ActiveRecord::Schema.define(version: 2018_11_26_043623) do
 
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.boolean "done"
-    t.integer "todo_id"
+  create_table "prayers", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "prayer_at"
+    t.string "note"
+    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["todo_id"], name: "index_items_on_todo_id"
-  end
-
-  create_table "todos", force: :cascade do |t|
-    t.string "title"
-    t.string "created_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_prayers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.integer "prayer_count"
+    t.integer "not_prayer_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index [nil], name: "users_lower_username_idx", unique: true
   end
 
 end
