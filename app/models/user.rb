@@ -10,6 +10,8 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: URI::MailTo::EMAIL_REGEXP }
     validates :username, presence: true, uniqueness: { case_sensitive: false }
 
+    validates_numericality_of :prayer_count, :not_prayer_count, only_integer: true, greater_than_or_equal_to: 0
+
     before_save :downcase_some_columns
 
     def downcase_some_columns

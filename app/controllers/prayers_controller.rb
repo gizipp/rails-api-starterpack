@@ -34,7 +34,7 @@ class PrayersController < ApplicationController
 
   def prayer_params
     # whitelist params
-    params.permit(:title)
+    params.permit(:prayer_at, :status, :note)
   end
 
   def set_prayer
